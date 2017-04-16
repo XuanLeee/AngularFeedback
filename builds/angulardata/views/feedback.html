@@ -1,0 +1,55 @@
+<div class="card feedback cf">
+  <div class="textintro">
+    <h2>Add Feedbacks</h2>
+    <form class="formgroup addfeedback cf"
+      name="myform"
+      ng-submit="addFeedback()"
+      novalidate>
+
+      <div class="formgroup">
+      <input type="radio" id="dirascending" name="direction"
+        ng-model="direction">
+      <label for="dirascending">asc order</label>&nbsp;
+
+      <input type="radio" id="dirdescending" name="direction"
+        ng-model="direction" value="reverse">
+      <label for="dirdescending">desc order</label>
+    </div>
+     <div class="formgroup">
+      <span class="label">by:</span>
+      <select ng-model="order">
+        <option value="feedbackname">Feedback</option>
+        <option value="date">Date</option>
+      </select>
+    </div>
+      <div class="inputwrapper">
+        <input type="text" name="feedbackname"
+          placeholder="do you like this page?"
+          ng-model="feedbackname" ng-required="true">
+      </div>
+      <button type="submit" class="btn"
+       ng-disabled="myform.$invalid"> + </button>
+    </form>
+</div>
+
+<div class="card feedback cf">
+  <h2>Your Feedbacks</h2>
+  <div class="feedback" ng-repeat="(key, feedback) in feedback">
+
+    <button class="btn btn-delete tooltip"
+      ng-click="deleteFeedback(key)"><span>Delete this feedback</span></button>
+    <div class="btn btn-checkin tooltip" ng-click="count = count + 1" ng-init  ="count=0">
+    <span>
+       like + {{count}}
+   </span>
+    </div>
+    <div class="feedback">
+    <span>
+      {{ feedback.date | date: 'yyyy-MM-dd'}}
+   </span>
+    </div>
+
+
+    <span class="text">{{feedback.name}}</span>
+  </div>
+</div>
