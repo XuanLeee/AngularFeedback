@@ -5,9 +5,6 @@ myApp.controller('FeedbackController',
     var ref = firebase.database().ref();
     var auth = $firebaseAuth();
 
-    $scope.order = 'firstname';
-    $scope.direction = null;
-    $scope.query = '';
     
     auth.$onAuthStateChanged(function(authUser) {
       if(authUser) {
@@ -37,9 +34,6 @@ myApp.controller('FeedbackController',
           feedbackInfo.$remove(key);
         } 
         
-        feedbackInfo.$watch(function(data) {
-          $rootScope.date = feedbackInfo.date.TIMESTAMP;
-        });
 
       } 
     }); 

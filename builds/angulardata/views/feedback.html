@@ -6,6 +6,15 @@
       ng-submit="addFeedback()"
       novalidate>
 
+<div class="formgroup">
+      <span class="label">by:</span>
+      <select ng-model="orderFeedback">
+        <option value="name">Feedback</option>
+        <option value="date">Date</option>
+      </select>
+    </div>
+
+
       <div class="formgroup">
       <input type="radio" id="dirascending" name="direction"
         ng-model="direction">
@@ -15,26 +24,20 @@
         ng-model="direction" value="reverse">
       <label for="dirdescending">desc order</label>
     </div>
-     <div class="formgroup">
-      <span class="label">by:</span>
-      <select ng-model="order">
-        <option value="feedbackname">Feedback</option>
-        <option value="date">Date</option>
-      </select>
-    </div>
+     
       <div class="inputwrapper">
         <input type="text" name="feedbackname"
           placeholder="do you like this page?"
           ng-model="feedbackname" ng-required="true">
       </div>
       <button type="submit" class="btn"
-       ng-disabled="myform.$invalid"> + </button>
+       ng-disabled="myform.$invalid"> add </button>
     </form>
 </div>
 
 <div class="card feedback cf">
   <h2>Your Feedbacks</h2>
-  <div class="feedback" ng-repeat="(key, feedback) in feedback">
+  <div class="feedback" ng-repeat="(key, feedback) in feedback | orderBy : orderFeedback:direction">
 
     <button class="btn btn-delete tooltip"
       ng-click="deleteFeedback(key)"><span>Delete this feedback</span></button>
